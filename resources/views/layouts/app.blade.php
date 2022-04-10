@@ -14,8 +14,8 @@
     </head>
     <body>
         <div id="app">
-            {{-- <container></container> --}}
-            <router-view></router-view>
+            @yield('content')
+            {{-- <router-view></router-view> --}}
         </div>
     </body>
 </html>

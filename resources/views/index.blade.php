@@ -5,7 +5,7 @@
 @endsection()
 
 @section('content')
-
+    <container></container>
 @endsection()
 
 @section('js_files')
