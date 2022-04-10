@@ -19,4 +19,31 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', 'HomeController@index')->name('home');
+
+
+/*
+|--------------------------------------------------------------------------
+| Students Routes
+|--------------------------------------------------------------------------
+*/
+Route::prefix('students')->group(function () {
+
+    Route::get('/', 'StudentController@index')->name('student.index');
+
+});
+
+/*
+|--------------------------------------------------------------------------
+| Student Routes
+|--------------------------------------------------------------------------
+*/
+Route::prefix('student')->group(function () {
+
+    Route::get('/{id}', 'StudentController@show')->name('student.show');
+    Route::post('/store', 'StudentController@store')->name('student.store');
+    Route::put('/{id}/update', 'StudentController@update')->name('student.update');
+    Route::delete('/{id}/destroy', 'StudentController@destroy')->name('student.destroy');
+
+});
+
