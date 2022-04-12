@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Student;
 use Illuminate\Http\Request;
-
+use App\Processes\StudentProcess;
 class StudentController extends Controller
 {
     /**
@@ -33,9 +33,21 @@ class StudentController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, StudentProcess $process)
     {
-        //
+
+        $process->create();
+
+        activity()
+            ->performedOn($process->student())
+            ->withProperties($process->student())
+            ->log('Process created');
+
+        return [
+            'success' => true,
+            'message' => 'Student created successfully',
+            'data' => $process->student()
+        ];
     }
 
     /**
