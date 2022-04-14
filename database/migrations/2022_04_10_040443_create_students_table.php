@@ -18,6 +18,7 @@ class CreateStudentsTable extends Migration
             $table->string('student_number')->unique();
             $table->string('student_firstname');
             $table->string('student_lastname');
+            $table->string('student_middlename')->nullable();
             $table->string('student_username')->unique();
             $table->string('student_email')->unique();
             $table->string('student_password');
@@ -27,8 +28,8 @@ class CreateStudentsTable extends Migration
             $table->string('student_state');
             $table->string('student_zip');
             $table->string('student_country');
-            $table->enum('student_status', ['active', 'inactive']);
-            $table->enum('student_gender', ['male', 'female']);
+            $table->enum('student_status', ['active', 'inactive'])->default('active');
+            $table->enum('student_gender', ['Male', 'Female']);
             $table->date('student_birthday');
             $table->timestamps();
             $table->softDeletes();

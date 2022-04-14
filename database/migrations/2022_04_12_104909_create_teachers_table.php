@@ -27,7 +27,7 @@ class CreateTeachersTable extends Migration
             $table->string('teacher_state');
             $table->string('teacher_zip');
             $table->enum('teacher_status', ['active', 'inactive'])->defaul('inactive');
-            $table->enum('teacher_gender', ['male', 'female']);
+            $table->enum('teacher_gender', ['Male', 'Female']);
             $table->date('teacher_birthday');
             $table->timestamps();
         });

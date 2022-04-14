@@ -17,6 +17,7 @@ class StudentFactory extends Factory
             'student_number' => $this->faker->unique()->randomNumber(9),
             'student_firstname' => $this->faker->firstName,
             'student_lastname' => $this->faker->lastName,
+            'student_middlename' => $this->faker->firstName,
             'student_username' => $this->faker->unique()->userName,
             'student_email' => $this->faker->unique()->email,
             'student_password' => bcrypt('password'),
