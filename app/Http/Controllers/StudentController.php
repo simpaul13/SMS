@@ -8,6 +8,11 @@ use Illuminate\Http\Request;
 use App\Processes\StudentProcess;
 class StudentController extends Controller
 {
+    // public function __construct()
+    // {
+    //     $this->middleware('auth');
+    // }
+
     /**
      * Display a listing of the resource.
      *
@@ -15,17 +20,8 @@ class StudentController extends Controller
      */
     public function index()
     {
-        //
-    }
+        return Student::all();
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
     }
 
     /**
@@ -58,18 +54,10 @@ class StudentController extends Controller
      */
     public function show(Student $student)
     {
-        //
-    }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Student  $student
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Student $student)
-    {
-        //
+        return Student::where('id', $student->id)
+                        ->first();
+
     }
 
     /**
@@ -79,9 +67,20 @@ class StudentController extends Controller
      * @param  \App\Models\Student  $student
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Student $student)
+    public function update(Request $request, Student $student, StudentProcess $process)
     {
-        //
+        $process->update();
+
+        activity()
+            ->performedOn($process->student())
+            ->withProperties($process->student())
+            ->log('Process updated');
+
+        return [
+            'success' => true,
+            'message' => 'Student updated successfully',
+            'data' => $process->student()
+        ];
     }
 
     /**
@@ -92,6 +91,17 @@ class StudentController extends Controller
      */
     public function destroy(Student $student)
     {
-        //
+        $student->delete();
+
+        activity()
+            ->performedOn($student)
+            ->withProperties($student)
+            ->log('Process deleted');
+
+        return [
+            'success' => true,
+            'message' => 'Student deleted successfully',
+            'data' => $student
+        ];
     }
 }

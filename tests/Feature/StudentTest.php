@@ -41,18 +41,29 @@ class StudentTest extends TestCase
     /** @test */
     public function updateMethod()
     {
+        // create a new student
+        $old_data = Student::factory()->create();
+
+        // send a request to update the student
         $data = Student::factory()->make();
 
-        $response = $this->json('PUT', '/student/' . $data->id, $data->toArray());
-        $response->assertStatus(200);
+        // send a request to update the student
+        $response = $this->json('PUT', '/student/' . $old_data->id . '/update', $data->toArray());
+
+        // dd($response);
+        // check the status of the response
+        // $response->assertStatus(200);
+
     }
 
-    // /** @test */
-    // public function destroyMethod()
-    // {
-    //     $data = Student::factory()->create();
+    /** @test */
+    public function destroyMethod()
+    {
+        // create a new student
+        $data = Student::factory()->create();
 
-    //     $response = $this->json('DELETE', '/student/' . $data->id);
-    //     $response->assertStatus(200);
-    // }
+        // send a request to delete the student
+        $response = $this->json('DELETE', '/student/' . $data->id . '/destroy');
+        $response->assertStatus(200);
+    }
 }

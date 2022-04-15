@@ -51,7 +51,7 @@ class StudentProcess
             'student_username'   => 'required|unique:students',
             'student_password'   => 'required',
             'student_email'      => 'required|email|unique:students',
-            'student_phone'      => 'required|digits:11',
+            // 'student_phone'      => 'required|digits:11',
             'student_address'    => 'required',
             'student_city'       => 'required',
             'student_zip'        => 'required',
@@ -101,10 +101,39 @@ class StudentProcess
     public function updateStudent()
     {
         $this->request->validate([
+            'student_firstname'  => 'required',
+            'student_lastname'   => 'required',
+            'student_middlename' => 'required',
+            'student_username'   => 'required|unique:students',
+            'student_password'   => 'required',
+            'student_email'      => 'required|email|unique:students',
+            // 'student_phone'      => 'required|digits:11',
+            'student_address'    => 'required',
+            'student_city'       => 'required',
+            'student_zip'        => 'required',
+            'student_country'    => 'required',
+            'student_birthday'   => 'required',
+            'student_gender'     => 'required|in:Male,Female'
         ]);
 
         $this->student->update([
+            'student_firstname'  => Hash::make($this->request->student_firstname),
+            'student_lastname'   => Hash::make($this->request->student_lastname),
+            'student_middlename' => Hash::make($this->request->student_middlename),
+            'student_username'   => Hash::make($this->request->student_username),
+            'student_email'      => Hash::make($this->request->student_email),
+            'student_password'   => Hash::make($this->request->student_password),
+            'student_phone'      => Hash::make($this->request->student_phone),
+            'student_address'    => Hash::make($this->request->student_address),
+            'student_city'       => Hash::make($this->request->student_city),
+            'student_state'      => $this->request->student_state,
+            'student_zip'        => Hash::make($this->request->student_zip),
+            'student_country'    => Hash::make($this->request->student_country),
+            'student_gender'     => $this->request->student_gender,
+            'student_birthday'   => $this->request->student_birthday
         ]);
+
+        dd($this->student);
 
         return $this;
     }
