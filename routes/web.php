@@ -47,3 +47,27 @@ Route::prefix('student')->group(function () {
 
 });
 
+/*
+|--------------------------------------------------------------------------
+| Teachers Routes
+|--------------------------------------------------------------------------
+*/
+Route::prefix('teachers')->group(function () {
+
+    Route::get('/', 'TeacherController@index')->name('teacher.index');
+
+});
+
+/*
+|--------------------------------------------------------------------------
+| Teacher Routes
+|--------------------------------------------------------------------------
+*/
+Route::prefix('teacher')->group(function () {
+
+    Route::get('/{id}', 'TeacherController@show')->name('teacher.show');
+    Route::post('/store', 'TeacherController@store')->name('teacher.store');
+    Route::put('/{id}/update', 'TeacherController@update')->name('teacher.update');
+    Route::delete('/{id}/destroy', 'TeacherController@destroy')->name('teacher.destroy');
+
+});
