@@ -32,6 +32,7 @@ class CreateTeachersTable extends Migration
             $table->enum('teacher_gender', ['Male', 'Female']);
             $table->date('teacher_birthday');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

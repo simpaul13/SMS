@@ -71,3 +71,27 @@ Route::prefix('teacher')->group(function () {
     Route::delete('/{id}/destroy', 'TeacherController@destroy')->name('teacher.destroy');
 
 });
+
+
+/*
+|--------------------------------------------------------------------------
+| Courses Routes
+|--------------------------------------------------------------------------
+*/
+Route::prefix('courses')->group(function () {
+
+    Route::get('/', 'CourseController@index')->name('course.index');
+
+});
+
+/*
+|--------------------------------------------------------------------------
+| Course Routes
+|--------------------------------------------------------------------------
+*/
+Route::prefix('course')->group(function () {
+    Route::get('/{id}', 'CourseController@show')->name('course.show');
+    Route::post('/store', 'CourseController@store')->name('course.store');
+    Route::put('/{id}/update', 'CourseController@update')->name('course.update');
+    Route::delete('/{id}/destroy', 'CourseController@destroy')->name('course.destroy');
+});
