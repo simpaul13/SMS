@@ -95,3 +95,28 @@ Route::prefix('course')->group(function () {
     Route::put('/{id}/update', 'CourseController@update')->name('course.update');
     Route::delete('/{id}/destroy', 'CourseController@destroy')->name('course.destroy');
 });
+
+/*
+|--------------------------------------------------------------------------
+| Subjects Routes
+|--------------------------------------------------------------------------
+*/
+Route::prefix('subjects')->group(function () {
+
+    Route::get('/', 'SubjectController@index')->name('subject.index');
+
+});
+
+/*
+|--------------------------------------------------------------------------
+| Subject Routes
+|--------------------------------------------------------------------------
+*/
+Route::prefix('subject')->group(function () {
+
+    Route::get('/{id}', 'SubjectController@show')->name('subject.show');
+    Route::post('/store', 'SubjectController@store')->name('subject.store');
+    Route::put('/{id}/update', 'SubjectController@update')->name('subject.update');
+    Route::delete('/{id}/destroy', 'SubjectController@destroy')->name('subject.destroy');
+
+});
