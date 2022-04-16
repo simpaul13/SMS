@@ -20,7 +20,7 @@ class StudentFactory extends Factory
             'student_middlename' => $this->faker->firstName,
             'student_username' => $this->faker->unique()->userName,
             'student_email' => $this->faker->unique()->email,
-            'student_password' => bcrypt('password'),
+            'student_password' =>'password',
             'student_phone' => $this->faker->phoneNumber,
             'student_address' => $this->faker->address,
             'student_city' => $this->faker->city,

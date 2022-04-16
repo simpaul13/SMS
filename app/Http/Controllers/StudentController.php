@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-
+use App\Http\Requests\StudentRequest;
 use App\Models\Student;
 use Illuminate\Http\Request;
 use App\Processes\StudentProcess;
@@ -67,9 +67,11 @@ class StudentController extends Controller
      * @param  \App\Models\Student  $student
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Student $student, StudentProcess $process)
+    public function update(StudentRequest $request, StudentProcess $process)
     {
-        $process->update();
+
+        $process->find($request->id)
+                ->update();
 
         activity()
             ->performedOn($process->student())

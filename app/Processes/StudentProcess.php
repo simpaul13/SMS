@@ -44,21 +44,6 @@ class StudentProcess
 
     public function createStudent()
     {
-        $this->request->validate([
-            'student_firstname'  => 'required',
-            'student_lastname'   => 'required',
-            'student_middlename' => 'required',
-            'student_username'   => 'required|unique:students',
-            'student_password'   => 'required',
-            'student_email'      => 'required|email|unique:students',
-            // 'student_phone'      => 'required|digits:11',
-            'student_address'    => 'required',
-            'student_city'       => 'required',
-            'student_zip'        => 'required',
-            'student_country'    => 'required',
-            'student_birthday'   => 'required',
-            'student_gender'     => 'required|in:Male,Female'
-        ]);
 
         $this->student = Student::create([
             'student_number'     => $this->student_number,
@@ -100,21 +85,6 @@ class StudentProcess
 
     public function updateStudent()
     {
-        $this->request->validate([
-            'student_firstname'  => 'required',
-            'student_lastname'   => 'required',
-            'student_middlename' => 'required',
-            'student_username'   => 'required|unique:students',
-            'student_password'   => 'required',
-            'student_email'      => 'required|email|unique:students',
-            // 'student_phone'      => 'required|digits:11',
-            'student_address'    => 'required',
-            'student_city'       => 'required',
-            'student_zip'        => 'required',
-            'student_country'    => 'required',
-            'student_birthday'   => 'required',
-            'student_gender'     => 'required|in:Male,Female'
-        ]);
 
         $this->student->update([
             'student_firstname'  => Hash::make($this->request->student_firstname),
@@ -132,8 +102,6 @@ class StudentProcess
             'student_gender'     => $this->request->student_gender,
             'student_birthday'   => $this->request->student_birthday
         ]);
-
-        dd($this->student);
 
         return $this;
     }

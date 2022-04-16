@@ -48,11 +48,10 @@ class StudentTest extends TestCase
         $data = Student::factory()->make();
 
         // send a request to update the student
-        $response = $this->json('PUT', '/student/' . $old_data->id . '/update', $data->toArray());
+        $response = $this->json('PUT', "/student/{$old_data->id}/update", $data->toArray());
 
-        // dd($response);
         // check the status of the response
-        // $response->assertStatus(200);
+        $response->assertStatus(200);
 
     }
 
