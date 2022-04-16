@@ -2,12 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StoreTeacherRequest;
-use App\Http\Requests\UpdateTeacherRequest;
+use App\Http\Requests\TeacherRequest;
 use App\Models\Teacher;
+use App\Processes\TeacherProcess;
+use Illuminate\Http\Request;
 
 class TeacherController extends Controller
 {
+    // public function __construct()
+    // {
+    //     $this->middleware('auth');
+    // }
+
     /**
      * Display a listing of the resource.
      *
@@ -15,17 +21,7 @@ class TeacherController extends Controller
      */
     public function index()
     {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+        return Teacher::all();
     }
 
     /**
@@ -34,9 +30,20 @@ class TeacherController extends Controller
      * @param  \App\Http\Requests\StoreTeacherRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreTeacherRequest $request)
+    public function store(TeacherRequest $request, TeacherProcess $process)
     {
-        //
+        $process->create();
+
+        activity()
+            ->performedOn($process->teacher())
+            ->withProperties($process->teacher())
+            ->log('Process created');
+
+        return [
+            'success' => true,
+            'message' => 'Teacher created successfully',
+            'data' => $process->teacher()
+        ];
     }
 
     /**
@@ -47,18 +54,8 @@ class TeacherController extends Controller
      */
     public function show(Teacher $teacher)
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Teacher  $teacher
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Teacher $teacher)
-    {
-        //
+        return Teacher::where('id', $teacher->id)
+                        ->first();
     }
 
     /**
@@ -68,9 +65,21 @@ class TeacherController extends Controller
      * @param  \App\Models\Teacher  $teacher
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateTeacherRequest $request, Teacher $teacher)
+    public function update(TeacherRequest $request, TeacherProcess $process)
     {
-        //
+        $process->find($request->id)
+                ->update();
+
+        activity()
+            ->performedOn($process->teacher())
+            ->withProperties($process->teacher())
+            ->log('Process updated');
+
+        return [
+            'success' => true,
+            'message' => 'Teacher updated successfully',
+            'data' => $process->teacher()
+        ];
     }
 
     /**
@@ -81,6 +90,17 @@ class TeacherController extends Controller
      */
     public function destroy(Teacher $teacher)
     {
-        //
+        $teacher->delete();
+
+        activity()
+            ->performedOn($teacher)
+            ->withProperties($teacher)
+            ->log('Process deleted');
+
+        return [
+            'success' => true,
+            'message' => 'Student deleted successfully',
+            'data' => $teacher
+        ];
     }
 }

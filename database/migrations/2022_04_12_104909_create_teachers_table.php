@@ -18,6 +18,7 @@ class CreateTeachersTable extends Migration
             $table->string('teacher_number')->unique();
             $table->string('teacher_firstname');
             $table->string('teacher_lastname');
+            $table->string('teacher_middlename')->nullable();
             $table->string('teacher_username')->unique();
             $table->string('teacher_email')->unique();
             $table->string('teacher_password');
@@ -26,7 +27,8 @@ class CreateTeachersTable extends Migration
             $table->string('teacher_city');
             $table->string('teacher_state');
             $table->string('teacher_zip');
-            $table->enum('teacher_status', ['active', 'inactive'])->defaul('inactive');
+            $table->string('teacher_country');
+            $table->enum('teacher_status', ['active', 'inactive'])->default('inactive');
             $table->enum('teacher_gender', ['Male', 'Female']);
             $table->date('teacher_birthday');
             $table->timestamps();
