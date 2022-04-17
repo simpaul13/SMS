@@ -54,7 +54,7 @@ class TeacherController extends Controller
      */
     public function show(Teacher $teacher)
     {
-        return Teacher::where('id', $teacher->id)
+        return Teacher::where('teacher_id', $teacher->teacher_id)
                         ->first();
     }
 

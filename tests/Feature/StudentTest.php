@@ -21,7 +21,7 @@ class StudentTest extends TestCase
     {
         $data = Student::factory()->create();
 
-        $response = $this->json('GET', '/student/' . $data->id);
+        $response = $this->json('GET', '/student/' . $data->student_id);
         $response->assertStatus(200);
     }
 
@@ -48,7 +48,7 @@ class StudentTest extends TestCase
         $data = Student::factory()->make();
 
         // send a request to update the student
-        $response = $this->json('PUT', "/student/{$old_data->id}/update", $data->toArray());
+        $response = $this->json('PUT', "/student/{$old_data->student_id}/update", $data->toArray());
 
         // check the status of the response
         $response->assertStatus(200);
@@ -62,7 +62,7 @@ class StudentTest extends TestCase
         $data = Student::factory()->create();
 
         // send a request to delete the student
-        $response = $this->json('DELETE', '/student/' . $data->id . '/destroy');
+        $response = $this->json('DELETE', '/student/' . $data->student_id . '/destroy');
         $response->assertStatus(200);
     }
 }

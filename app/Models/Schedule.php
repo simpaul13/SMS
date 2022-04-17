@@ -10,5 +10,7 @@ class Schedule extends Model
 {
     use HasFactory, SoftDeletes;
 
+    protected $primaryKey = 'schedule_id';
+
     protected $guarded = [];
 }

@@ -10,5 +10,7 @@ class Classroom extends Model
 {
     use HasFactory, SoftDeletes;
 
+    protected $primaryKey = 'classroom_id';
+
     protected $guarded = [];
 }

@@ -21,7 +21,7 @@ class TeacherTest extends TestCase
     {
         $data = Teacher::factory()->create();
 
-        $response = $this->json('GET', '/teacher/' . $data->id);
+        $response = $this->json('GET', '/teacher/' . $data->teacher_id);
         $response->assertStatus(200);
     }
 
@@ -48,7 +48,7 @@ class TeacherTest extends TestCase
         $data = Teacher::factory()->make();
 
         // send a request to update the teacher
-        $response = $this->json('PUT', "/teacher/{$old_data->id}/update", $data->toArray());
+        $response = $this->json('PUT', "/teacher/{$old_data->teacher_id}/update", $data->toArray());
 
         // check the status of the response
         $response->assertStatus(200);
@@ -61,7 +61,7 @@ class TeacherTest extends TestCase
         $data = Teacher::factory()->create();
 
         // send a request to destroy the teacher
-        $response = $this->json('DELETE', '/teacher/' . $data->id . '/destroy');
+        $response = $this->json('DELETE', '/teacher/' . $data->teacher_id . '/destroy');
         $response->assertStatus(200);
     }
 }

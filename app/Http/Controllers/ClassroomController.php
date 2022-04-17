@@ -49,7 +49,7 @@ class ClassroomController extends Controller
      */
     public function show(Classroom $classroom)
     {
-        return Classroom::where('classroom_id', $classroom->id)
+        return Classroom::where('classroom_id', $classroom->classroom_id)
                         ->first();
     }
 

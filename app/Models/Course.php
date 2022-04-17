@@ -10,5 +10,7 @@ class Course extends Model
 {
     use HasFactory, SoftDeletes;
 
+    protected $primaryKey = 'course_id';
+
     protected $guarded = [];
 }

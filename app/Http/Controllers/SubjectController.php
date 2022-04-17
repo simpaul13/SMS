@@ -48,7 +48,7 @@ class SubjectController extends Controller
      */
     public function show(Subject $subject)
     {
-        return Subject::where('id', $subject->id)
+        return Subject::where('subject_id', $subject->subject_id)
                         ->first();
     }
 

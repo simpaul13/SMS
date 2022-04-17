@@ -21,7 +21,7 @@ class ClassroomTest extends TestCase
     {
         $data = Classroom::factory()->create();
 
-        $response = $this->json('GET', '/classroom/' . $data->id);
+        $response = $this->json('GET', '/classroom/' . $data->classroom_id);
         $response->assertStatus(200);
     }
 
@@ -48,7 +48,7 @@ class ClassroomTest extends TestCase
         $data = Classroom::factory()->make();
 
         // send a request to update the classroom
-        $response = $this->json('PUT', "/classroom/{$old_data->id}/update", $data->toArray());
+        $response = $this->json('PUT', "/classroom/{$old_data->classroom_id}/update", $data->toArray());
 
         // check the status of the response
         $response->assertStatus(200);
@@ -62,7 +62,7 @@ class ClassroomTest extends TestCase
         $data = Classroom::factory()->create();
 
         // send a request to destroy the classroom
-        $response = $this->json('DELETE', "/classroom/{$data->id}/destroy");
+        $response = $this->json('DELETE', "/classroom/{$data->classroom_id}/destroy");
 
         // check the status of the response
         $response->assertStatus(200);

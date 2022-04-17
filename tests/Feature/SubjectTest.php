@@ -21,7 +21,7 @@ class SubjectTest extends TestCase
     {
         $data = Subject::factory()->create();
 
-        $response = $this->json('GET', '/subject/' . $data->id);
+        $response = $this->json('GET', '/subject/' . $data->subject_id);
         $response->assertStatus(200);
     }
 
@@ -48,7 +48,7 @@ class SubjectTest extends TestCase
         $data = Subject::factory()->make();
 
         // send a request to update the subject
-        $response = $this->json('PUT', "/subject/{$old_data->id}/update", $data->toArray());
+        $response = $this->json('PUT', "/subject/{$old_data->subject_id}/update", $data->toArray());
 
         // check the status of the response
         $response->assertStatus(200);
@@ -61,7 +61,7 @@ class SubjectTest extends TestCase
         $data = Subject::factory()->create();
 
         // send a request to delete the subject
-        $response = $this->json('DELETE', "/subject/{$data->id}/destroy");
+        $response = $this->json('DELETE', "/subject/{$data->subject_id}/destroy");
 
         // check the status of the response
         $response->assertStatus(200);

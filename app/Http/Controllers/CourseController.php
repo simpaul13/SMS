@@ -43,7 +43,7 @@ class CourseController extends Controller
      */
     public function show(Course $course)
     {
-        return Course::where('id', $course->id)
+        return Course::where('course_id', $course->course_id)
                         ->first();
     }
 

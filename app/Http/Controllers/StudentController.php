@@ -55,7 +55,7 @@ class StudentController extends Controller
     public function show(Student $student)
     {
 
-        return Student::where('id', $student->id)
+        return Student::where('student_id', $student->student_id)
                         ->first();
 
     }

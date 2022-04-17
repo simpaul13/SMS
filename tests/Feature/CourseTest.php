@@ -21,7 +21,7 @@ class CourseTest extends TestCase
     {
         $data = Course::factory()->create();
 
-        $response = $this->json('GET', '/course/' . $data->id);
+        $response = $this->json('GET', '/course/' . $data->course_id);
         $response->assertStatus(200);
     }
 
@@ -48,7 +48,7 @@ class CourseTest extends TestCase
         $data = Course::factory()->make();
 
         // send a request to update the course
-        $response = $this->json('PUT', "/course/{$old_data->id}/update", $data->toArray());
+        $response = $this->json('PUT', "/course/{$old_data->course_id}/update", $data->toArray());
 
         // check the status of the response
         $response->assertStatus(200);
@@ -62,7 +62,7 @@ class CourseTest extends TestCase
         $data = Course::factory()->create();
 
         // send a request to delete the course
-        $response = $this->json('DELETE', "/course/{$data->id}/destroy");
+        $response = $this->json('DELETE', "/course/{$data->course_id}/destroy");
 
         // check the status of the response
         $response->assertStatus(200);

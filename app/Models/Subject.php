@@ -10,5 +10,7 @@ class Subject extends Model
 {
     use HasFactory, SoftDeletes;
 
+    protected $primaryKey = 'subject_id';
+
     protected $guarded = [];
 }
