@@ -120,3 +120,28 @@ Route::prefix('subject')->group(function () {
     Route::delete('/{id}/destroy', 'SubjectController@destroy')->name('subject.destroy');
 
 });
+
+/*
+|--------------------------------------------------------------------------
+| Classrooms Routes
+|--------------------------------------------------------------------------
+*/
+Route::prefix('classrooms')->group(function () {
+
+    Route::get('/', 'ClassroomController@index')->name('classroom.index');
+
+});
+
+/*
+|--------------------------------------------------------------------------
+| Classroom Routes
+|--------------------------------------------------------------------------
+*/
+Route::prefix('classroom')->group(function () {
+
+    Route::get('/{id}', 'ClassroomController@show')->name('classroom.show');
+    Route::post('/store', 'ClassroomController@store')->name('classroom.store');
+    Route::put('/{id}/update', 'ClassroomController@update')->name('classroom.update');
+    Route::delete('/{id}/destroy', 'ClassroomController@destroy')->name('classroom.destroy');
+
+});
