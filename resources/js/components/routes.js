@@ -9,11 +9,6 @@ export default {
             path : "/classroom",
             component: require('./classroom/index').default,
         },
-        // subject
-        {
-            path : "/subject",
-            component: require('./subject/index').default,
-        },
         // course
         {
             path : "/course",
@@ -23,6 +18,11 @@ export default {
         {
             path : "/student",
             component: require('./student/index').default,
+        },
+        // subject
+        {
+            path : "/subject",
+            component: require('./subject/index').default,
         },
         // teacher
         {
