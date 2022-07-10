@@ -5,7 +5,13 @@
 @endsection()
 
 @section('content')
-    <container></container>
+    <div class="content">
+        <navbar></navbar>
+        <div class="flex">
+            <sidebar class="h-screen sticky top-0"></sidebar>
+            <container class="m-5"></container>
+        </div>
+    </div>
 @endsection()
 
 @section('js_files')
